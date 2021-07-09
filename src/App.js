@@ -1,10 +1,14 @@
 import "./App.css";
 import InfoModal from "./components/infoModal";
+import SettingsModal from "./components/settingsModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <InfoModal />
+    <>
+      <InfoModal />
+      <SettingsModal />
+    </>
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />

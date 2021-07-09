@@ -1,6 +1,6 @@
 import "./App.css";
-import InfoModal from "./components/infoModal";
-import SettingsModal from "./components/settingsModal";
+import InfoModal from "./components/InfoModal";
+import SettingsModal from "./components/SettingsModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {

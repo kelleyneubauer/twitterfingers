@@ -26,8 +26,10 @@ const InfoModal = () => {
             uses the Twitter API, React, and Bootstrap.
           </p>
           <br />
-          <h4>HOW TO PLAY:</h4>
-          <hr />
+          <Modal.Header>
+            <h4>HOW TO PLAY:</h4>
+          </Modal.Header>
+          <br />
           <p>Just start typing the Tweet text...</p>
         </Modal.Body>
       </Modal>

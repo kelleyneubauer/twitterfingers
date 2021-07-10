@@ -1,13 +1,11 @@
 import "./App.css";
-import InfoModal from "./components/InfoModal";
-import SettingsModal from "./components/SettingsModal";
+import Navigation from "./components/Navigation";
 import TweetDiv from "./components/TweetDiv";
 
 function App() {
   return (
     <>
-      <InfoModal />
-      <SettingsModal />
+      <Navigation />
       <TweetDiv
         tweetImg="https://pbs.twimg.com/profile_images/856629049547935744/ScErYmP0_400x400.jpg"
         twitterName="Oregon State University"

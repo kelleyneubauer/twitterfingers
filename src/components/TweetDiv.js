@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 
 const TweetDiv = (props) => {
+  const [userInput, setUserInput] = useState();
+
+  const changeCharColor = (userInput) => {
+    if (userInput[0] === props.tweet[0]) {
+      console.log("Good job!");
+    } else {
+      console.log("Bad job :(");
+    }
+  };
+
+  const userInputChangeHandler = (event) => {
+    setUserInput(() => {
+      return event.target.value;
+    });
+    changeCharColor(event.target.value);
+  };
+
   return (
     <>
       <center>
@@ -75,7 +92,12 @@ const TweetDiv = (props) => {
         <br />
         <Form>
           <Form.Group>
-            <Form.Control as="textarea" rows={4} className="game-divs tweet" />
+            <Form.Control
+              as="textarea"
+              rows={4}
+              onChange={userInputChangeHandler}
+              className="game-divs tweet"
+            />
           </Form.Group>
         </Form>
       </center>

@@ -1,22 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
+import useState from "react-usestateref";
 import { Form } from "react-bootstrap";
 
 const TweetDiv = (props) => {
   const [userInput, setUserInput] = useState();
+  let curTweetIdx = 0;
 
   const changeCharColor = (userInput) => {
-    if (userInput[0] === props.tweet[0]) {
-      console.log("Good job!");
-    } else {
-      console.log("Bad job :(");
+    console.log(userInput);
+    if (userInput !== undefined) {
+      if (
+        userInput.charAt(curTweetIdx) === props.tweetContent.charAt(curTweetIdx)
+      ) {
+        console.log("Good job!");
+      } else {
+        console.log("Bad job :(");
+      }
     }
+    curTweetIdx += 1;
   };
+
+  if (userInput !== undefined) {
+    changeCharColor(userInput);
+  }
 
   const userInputChangeHandler = (event) => {
     setUserInput(() => {
       return event.target.value;
     });
-    changeCharColor(event.target.value);
   };
 
   return (

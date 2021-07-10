@@ -9,6 +9,15 @@ const SettingsModal = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // language options at https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query
+  let languages = [
+      {label: "English", value: "en"},
+      {label: "Arabic", value: "ar"},
+      {label: "German", value: "de"},
+      {label: "Russian", value: "ru"},
+      {label: "Spanish", value: "es"}
+    ]
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -28,7 +37,7 @@ const SettingsModal = () => {
             <Form.Group>
               <Form.Label>language</Form.Label>
               <Form.Control as="select">
-                <option>en</option>
+                {languages.map((language) => <option key={language.label} value={language.value}>{language.label + " (" + language.value + ")"}</option>)}
               </Form.Control>
             </Form.Group>
             <br />

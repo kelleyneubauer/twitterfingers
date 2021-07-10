@@ -91,8 +91,7 @@ const TweetDiv = (props) => {
             Share
           </a>
         </div>
-        <br />
-        <br />
+
         <Form>
           <Form.Group>
             {/* Handles keystrokes for color logic */}

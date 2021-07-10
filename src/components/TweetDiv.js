@@ -1,4 +1,5 @@
 import React from "react";
+import { Form } from "react-bootstrap";
 
 const TweetDiv = (props) => {
   return (
@@ -70,6 +71,13 @@ const TweetDiv = (props) => {
             Share
           </a>
         </div>
+        <br />
+        <br />
+        <Form>
+          <Form.Group>
+            <Form.Control as="textarea" rows={4} className="game-divs tweet" />
+          </Form.Group>
+        </Form>
       </center>
     </>
   );

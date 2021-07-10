@@ -1,34 +1,14 @@
 import React from "react";
-import useState from "react-usestateref";
 import { Form } from "react-bootstrap";
+import useTypingGame from "react-typing-game-hook";
 
+// Source: https://www.npmjs.com/package/react-typing-game-hook
 const TweetDiv = (props) => {
-  const [userInput, setUserInput] = useState();
-  let curTweetIdx = 0;
-
-  const changeCharColor = (userInput) => {
-    console.log(userInput);
-    if (userInput !== undefined) {
-      if (
-        userInput.charAt(curTweetIdx) === props.tweetContent.charAt(curTweetIdx)
-      ) {
-        console.log("Good job!");
-      } else {
-        console.log("Bad job :(");
-      }
-    }
-    curTweetIdx += 1;
-  };
-
-  if (userInput !== undefined) {
-    changeCharColor(userInput);
-  }
-
-  const userInputChangeHandler = (event) => {
-    setUserInput(() => {
-      return event.target.value;
-    });
-  };
+  // Splits tweet into array of chars for parsing
+  const {
+    states: { chars, charsState },
+    actions: { insertTyping, resetTyping, deleteTyping },
+  } = useTypingGame(props.tweetContent);
 
   return (
     <>
@@ -45,7 +25,19 @@ const TweetDiv = (props) => {
           </span>
           <span id="twitter-date">{props.tweetDate}</span>
 
-          <p className="tweet">{props.tweetContent}</p>
+          {/* Tweet content is held here */}
+          <p className="tweet" tabIndex={0}>
+            {chars.split("").map((char, index) => {
+              let state = charsState[index];
+              let color =
+                state === 0 ? "#657786" : state === 1 ? "black" : "red";
+              return (
+                <span key={char + index} style={{ color }}>
+                  {char}
+                </span>
+              );
+            })}
+          </p>
 
           <hr />
 
@@ -103,11 +95,21 @@ const TweetDiv = (props) => {
         <br />
         <Form>
           <Form.Group>
+            {/* Handles keystrokes for color logic */}
             <Form.Control
               as="textarea"
               rows={4}
-              onChange={userInputChangeHandler}
               className="game-divs tweet"
+              onKeyDown={(e) => {
+                const key = e.key;
+                if (key === "Escape") {
+                  resetTyping();
+                } else if (key === "Backspace") {
+                  deleteTyping(false);
+                } else if (key.length === 1) {
+                  insertTyping(key);
+                }
+              }}
             />
           </Form.Group>
         </Form>

@@ -45,6 +45,13 @@ code {
   margin-right: 2em;
 }
 
+.nav-icon {
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+  color: #657786;
+  cursor: pointer;
+}
+
 .tweet {
   font-size: 2em;
   font-weight: bold;

@@ -1,6 +1,35 @@
 import React from "react";
+import useState from "react-usestateref";
+import { Form } from "react-bootstrap";
 
 const TweetDiv = (props) => {
+  const [userInput, setUserInput] = useState();
+  let curTweetIdx = 0;
+
+  const changeCharColor = (userInput) => {
+    console.log(userInput);
+    if (userInput !== undefined) {
+      if (
+        userInput.charAt(curTweetIdx) === props.tweetContent.charAt(curTweetIdx)
+      ) {
+        console.log("Good job!");
+      } else {
+        console.log("Bad job :(");
+      }
+    }
+    curTweetIdx += 1;
+  };
+
+  if (userInput !== undefined) {
+    changeCharColor(userInput);
+  }
+
+  const userInputChangeHandler = (event) => {
+    setUserInput(() => {
+      return event.target.value;
+    });
+  };
+
   return (
     <>
       <center>
@@ -70,6 +99,18 @@ const TweetDiv = (props) => {
             Share
           </a>
         </div>
+        <br />
+        <br />
+        <Form>
+          <Form.Group>
+            <Form.Control
+              as="textarea"
+              rows={4}
+              onChange={userInputChangeHandler}
+              className="game-divs tweet"
+            />
+          </Form.Group>
+        </Form>
       </center>
     </>
   );

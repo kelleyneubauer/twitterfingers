@@ -33,9 +33,6 @@ function App() {
             />
           </Col>
         </Row>
-        <Row>
-          <DisplayStats />
-        </Row>
       </Container>
     </>
   );

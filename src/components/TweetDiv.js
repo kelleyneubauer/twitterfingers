@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import useTypingGame from "react-typing-game-hook";
 
@@ -6,11 +6,27 @@ import useTypingGame from "react-typing-game-hook";
 const TweetDiv = (props) => {
   // Splits tweet into array of chars for parsing
   const {
-    states: { chars, charsState, currIndex, correctChar, errorChar },
-    actions: { insertTyping, resetTyping, deleteTyping },
+    states: { chars, charsState, currChar, currIndex, correctChar, errorChar, length },
+    actions: { insertTyping, resetTyping, deleteTyping, getDuration },
   } = useTypingGame(props.tweetContent, { skipCurrentWordOnSpace: false } );
 
+  const [wordsTyped, incrementWordsTyped] = useState(0);
+
+  function setWordsTyped () {
+    incrementWordsTyped(wordsTyped === totalWordCount ? totalWordCount : wordsTyped + 1);
+  }
+
+  const totalWordCount = (() => {
+    let str = props.tweetContent;
+    str = str.replace(/(^\s*)|(\s*$)/gi,"");
+    str = str.replace(/[ ]{2,}/gi," ");
+    str = str.replace(/\n /,"\n");
+    return str.split(' ').length;
+  })()
+
+  
   return (
+    
     <>
       <center>
         <div className="game-divs">
@@ -113,11 +129,29 @@ const TweetDiv = (props) => {
                   resetTyping();
                 } else if (key === "Backspace") {
                   deleteTyping(false);
-                  console.log("key: " + key + "\nidx: " + currIndex + "\ncorrect: " + correctChar + "\nerror: " + errorChar)
                 } else if (key.length === 1) {
                   insertTyping(key);
-                  console.log("key: " + key + "\nidx: " + currIndex + "\ncorrect: " + correctChar + "\nerror: " + errorChar)
                 }
+
+              }}
+
+              onChange={() => {
+                // index can't go past (length - 1) so an excessive amount of incorrect char can break the thing
+                console.log("curr idx: " + currIndex);
+
+                if((currChar === " " || currIndex === length - 1) && charsState[currIndex] === 1) {
+                  setWordsTyped();
+                }
+                // console.log("Accuracy check: " + correctChar + " out of " + (correctChar + errorChar))
+                // console.log("Speed check: " + wordsTyped + " words in " + getDuration() + " milliseconds");
+                console.log("Accuracy = " + Math.round(correctChar / (correctChar + errorChar) * 100) + "%");
+                console.log("WPM = " + Math.round(wordsTyped * 60000 / getDuration()));
+                console.log("\n")
+
+                if(correctChar === length) {
+                  console.log("GOOD!\n  *load next tweet*  ");
+                  resetTyping();
+                } 
               }}
             />
           </Form.Group>

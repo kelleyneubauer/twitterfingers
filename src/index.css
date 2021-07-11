@@ -13,6 +13,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* || Navbar Icon */
+
+.nav-icon {
+  margin-right: 0.5em;
+  margin-left: 0.5em;
+  color: #657786;
+  cursor: pointer;
+}
+
+/* || Timer */
+
+.timer {
+  padding-bottom: 1em;
+  padding-top: 1em;
+  font-size: 2em;
+}
+
+/* || Stats on Home Screen */
+
+.stats {
+  padding-bottom: 1em;
+  padding-top: 1em;
+  font-size: 1.5em;
+}
+
+.stats-container {
+  margin: auto;
+}
+
 /* || Tweet Div */
 
 .game-divs {
@@ -43,13 +73,6 @@ code {
 
 .interaction-links {
   margin-right: 2em;
-}
-
-.nav-icon {
-  margin-right: 0.5em;
-  margin-left: 0.5em;
-  color: #657786;
-  cursor: pointer;
 }
 
 .tweet {

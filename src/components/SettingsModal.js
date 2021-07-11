@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import TimerSettings from "./TimerSettings";
 
 const SettingsModal = () => {
   const [show, setShow] = useState(false);
@@ -9,13 +10,13 @@ const SettingsModal = () => {
   const handleShow = () => setShow(true);
 
   // language options at https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query
-  let languages = [
-      {label: "English", value: "en"},
-      {label: "Arabic", value: "ar"},
-      {label: "German", value: "de"},
-      {label: "Russian", value: "ru"},
-      {label: "Spanish", value: "es"}
-    ]
+  let languages = [
+    { label: "English", value: "en" },
+    { label: "Arabic", value: "ar" },
+    { label: "German", value: "de" },
+    { label: "Russian", value: "ru" },
+    { label: "Spanish", value: "es" },
+  ];
 
   return (
     <>
@@ -45,7 +46,11 @@ const SettingsModal = () => {
             <Form.Group>
               <Form.Label>language</Form.Label>
               <Form.Control as="select">
-                {languages.map((language) => <option key={language.label} value={language.value}>{language.label + " (" + language.value + ")"}</option>)}
+                {languages.map((language) => (
+                  <option key={language.label} value={language.value}>
+                    {language.label + " (" + language.value + ")"}
+                  </option>
+                ))}
               </Form.Control>
             </Form.Group>
             <br />
@@ -54,12 +59,7 @@ const SettingsModal = () => {
             </Modal.Header>
             <br />
             <Form.Label>duration</Form.Label>
-            <Form.Control
-              type="text"
-              required
-              pattern="[0-9]{2}:[0-9]{2}"
-              defaultValue="1:00"
-            />
+            <TimerSettings />
           </Form>
 
           <br />

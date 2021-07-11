@@ -39,7 +39,11 @@ const InfoModal = () => {
             <h4>HOW TO PLAY:</h4>
           </Modal.Header>
           <br />
-          <p>Just start typing the Tweet text...</p>
+          <p>
+            1) Press the 'start' button.
+            2) Click on the interactive console text box.
+            3) Begin typing and having fun!
+          </p>
         </Modal.Body>
       </Modal>
     </>

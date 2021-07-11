@@ -30,7 +30,7 @@ class TimerSettings extends React.Component {
           <option value="300">5:00</option>
         </Form.Control>
         <>
-          <Button variant="primary" onClick={this.handleSave}>
+          <Button className="settings-button" onClick={this.handleSave}>
             Save
           </Button>{" "}
         </>

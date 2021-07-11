@@ -1,11 +1,20 @@
-import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import React from "react";
 
 // https://stackoverflow.com/questions/20618355/how-to-write-a-countdown-timer-in-javascript
-const Timer = () => {
-  function startTimer(duration, display) {
+class Timer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // This binding is necessary to make `this` work in the callback
+    this.startOnClick = this.startOnClick.bind(this);
+    this.startTimer = this.startTimer.bind(this);
+  }
+
+  startTimer(duration, display) {
     var start = Date.now(),
       diff,
       minutes,
@@ -34,23 +43,36 @@ const Timer = () => {
     setInterval(timer, 1000);
   }
 
-  window.onload = function () {
+  startOnClick() {
     var minutes = 60,
       display = document.querySelector("#time");
-    startTimer(minutes, display);
-  };
+    this.startTimer(minutes, display);
+  }
 
-  return (
-    <center>
-      <Container className="timer-container">
-        <Row>
-          <Col className="timer">
-            <span id="time"></span>
-          </Col>
-        </Row>
-      </Container>
-    </center>
-  );
-};
+  render() {
+    return (
+      <center>
+        <Container className="timer-container">
+          <Row>
+            <Col>
+              <Button
+                className="start-button"
+                variant="primary"
+                onClick={this.startOnClick}
+              >
+                Start
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="timer">
+              <span id="time"></span>
+            </Col>
+          </Row>
+        </Container>
+      </center>
+    );
+  }
+}
 
 export default Timer;

@@ -9,7 +9,7 @@ const DisplayStats = (props) => {
     <div className="stats-container">
       <Container>
         <Row>
-          <Col className="stats">{props.WPM}wpm</Col>
+          <Col className="stats">{props.wpm}wpm</Col>
           <Col className="stats">{props.accuracy}%</Col>
         </Row>
       </Container>

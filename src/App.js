@@ -2,7 +2,6 @@ import "./App.css";
 import Navigation from "./components/Navigation";
 import TweetDiv from "./components/TweetDiv";
 import Timer from "./components/Timer";
-import DisplayStats from "./components/DisplayStats";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

@@ -18,8 +18,16 @@ code {
 
 .timer {
   padding-bottom: 1em;
-  padding-top: 1em;
   font-size: 2em;
+}
+
+.settings-button {
+  background-color: #1da1f2;
+}
+
+.start-button {
+  margin-top: 1em;
+  background-color: #1da1f2;
 }
 
 /* || Stats on Home Screen */

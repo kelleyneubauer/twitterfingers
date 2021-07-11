@@ -23,7 +23,7 @@ const TweetDiv = (props) => {
   const [wordsTyped, incrementWordsTyped] = useState(0);
   const [stats, setStats] = useState({
     accuracy: 0,
-    WPM: 0,
+    wpm: 0,
   });
 
   function setWordsTyped() {
@@ -35,7 +35,7 @@ const TweetDiv = (props) => {
   function statsChangeHandler() {
     setStats({
       accuracy: Math.round((correctChar / (correctChar + errorChar)) * 100),
-      WPM: Math.round((wordsTyped * 6000) / getDuration()),
+      wpm: Math.round((wordsTyped * 60000) / getDuration()),
     });
   }
 
@@ -188,7 +188,7 @@ const TweetDiv = (props) => {
         </Form>
       </center>
       <Row>
-        <DisplayStats accuracy={stats.accuracy} WPM={stats.WPM} />
+        <DisplayStats accuracy={stats.accuracy} wpm={stats.wpm} />
       </Row>
     </>
   );

@@ -43,6 +43,12 @@ code {
   font-size: 1.5em;
 }
 
+.nav-icon {
+  margin-right: 0.5em;
+  margin-left: 0.75em;
+  cursor: pointer;
+}
+
 /* || Tweet Div */
 
 .game-divs {
@@ -74,12 +80,6 @@ code {
 
 .interaction-links {
   margin-right: 2em;
-}
-
-.nav-icon {
-  margin-right: 0.5em;
-  margin-left: 0.75em;
-  cursor: pointer;
 }
 
 .tweet {

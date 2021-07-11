@@ -6,8 +6,11 @@ import DisplayStats from "./components/DisplayStats";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import mockTweets from "./mockTweets";
 
 function App() {
+  let randomIdx = Math.floor(Math.random() * mockTweets.length);
+
   return (
     <>
       <Navigation />
@@ -20,13 +23,13 @@ function App() {
         <Row>
           <Col>
             <TweetDiv
-              tweetImg="https://pbs.twimg.com/profile_images/856629049547935744/ScErYmP0_400x400.jpg"
-              twitterName="Oregon State University"
-              twitterHandle="OregonState"
-              tweetDate="Jul 6"
-              likes="2K"
-              comments="20"
-              tweetContent="What's that one thing you just can't let go? Beavers: Flowing Water"
+              twitterHandle={mockTweets[randomIdx].twitterHandle}
+              twitterName={mockTweets[randomIdx].twitterName}
+              tweetImg={mockTweets[randomIdx].tweetImg}
+              tweetContent={mockTweets[randomIdx].tweetContent}
+              tweetDate={mockTweets[randomIdx].tweetDate}
+              likes={mockTweets[randomIdx].likes}
+              comments={mockTweets[randomIdx].comments}
             />
           </Col>
         </Row>

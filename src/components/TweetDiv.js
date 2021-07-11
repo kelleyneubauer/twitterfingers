@@ -1,32 +1,53 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import useTypingGame from "react-typing-game-hook";
+import Row from "react-bootstrap/Row";
+import DisplayStats from "./DisplayStats";
 
 // Source: https://www.npmjs.com/package/react-typing-game-hook
 const TweetDiv = (props) => {
-  // Splits tweet into array of chars for parsing
+  // charsState is an array that keeps track of what has been typed correctly
   const {
-    states: { chars, charsState, currChar, currIndex, correctChar, errorChar, length },
+    states: {
+      chars,
+      charsState,
+      currChar,
+      currIndex,
+      correctChar,
+      errorChar,
+      length,
+    },
     actions: { insertTyping, resetTyping, deleteTyping, getDuration },
-  } = useTypingGame(props.tweetContent, { skipCurrentWordOnSpace: false } );
+  } = useTypingGame(props.tweetContent, { skipCurrentWordOnSpace: false });
 
   const [wordsTyped, incrementWordsTyped] = useState(0);
+  const [stats, setStats] = useState({
+    accuracy: 0,
+    WPM: 0,
+  });
 
-  function setWordsTyped () {
-    incrementWordsTyped(wordsTyped === totalWordCount ? totalWordCount : wordsTyped + 1);
+  function setWordsTyped() {
+    incrementWordsTyped(
+      wordsTyped === totalWordCount ? totalWordCount : wordsTyped + 1
+    );
+  }
+
+  function statsChangeHandler() {
+    setStats({
+      accuracy: Math.round((correctChar / (correctChar + errorChar)) * 100),
+      WPM: Math.round((wordsTyped * 6000) / getDuration()),
+    });
   }
 
   const totalWordCount = (() => {
     let str = props.tweetContent;
-    str = str.replace(/(^\s*)|(\s*$)/gi,"");
-    str = str.replace(/[ ]{2,}/gi," ");
-    str = str.replace(/\n /,"\n");
-    return str.split(' ').length;
-  })()
+    str = str.replace(/(^\s*)|(\s*$)/gi, "");
+    str = str.replace(/[ ]{2,}/gi, " ");
+    str = str.replace(/\n /, "\n");
+    return str.split(" ").length;
+  })();
 
-  
   return (
-    
     <>
       <center>
         <div className="game-divs">
@@ -47,9 +68,12 @@ const TweetDiv = (props) => {
               let state = charsState[index];
               let color =
                 state === 0 ? "#657786" : state === 1 ? "black" : "red";
-              if (char === ' ' && state === 2) {
+              if (char === " " && state === 2) {
                 return (
-                  <span key={char + index} style={{ color , backgroundColor: color}}>
+                  <span
+                    key={char + index}
+                    style={{ color, backgroundColor: color }}
+                  >
                     {char}
                   </span>
                 );
@@ -132,31 +156,40 @@ const TweetDiv = (props) => {
                 } else if (key.length === 1) {
                   insertTyping(key);
                 }
-
               }}
-
               onChange={() => {
                 // index can't go past (length - 1) so an excessive amount of incorrect char can break the thing
                 console.log("curr idx: " + currIndex);
 
-                if((currChar === " " || currIndex === length - 1) && charsState[currIndex] === 1) {
+                if (
+                  (currChar === " " || currIndex === length - 1) &&
+                  charsState[currIndex] === 1
+                ) {
                   setWordsTyped();
                 }
                 // console.log("Accuracy check: " + correctChar + " out of " + (correctChar + errorChar))
                 // console.log("Speed check: " + wordsTyped + " words in " + getDuration() + " milliseconds");
-                console.log("Accuracy = " + Math.round(correctChar / (correctChar + errorChar) * 100) + "%");
-                console.log("WPM = " + Math.round(wordsTyped * 60000 / getDuration()));
-                console.log("\n")
+                console.log(
+                  "Accuracy = " +
+                    Math.round(
+                      (correctChar / (correctChar + errorChar)) * 100
+                    ) +
+                    "%"
+                );
+                console.log(
+                  "WPM = " + Math.round((wordsTyped * 60000) / getDuration())
+                );
+                console.log("\n");
 
-                if(correctChar === length) {
-                  console.log("GOOD!\n  *load next tweet*  ");
-                  resetTyping();
-                } 
+                statsChangeHandler();
               }}
             />
           </Form.Group>
         </Form>
       </center>
+      <Row>
+        <DisplayStats accuracy={stats.accuracy} WPM={stats.WPM} />
+      </Row>
     </>
   );
 };

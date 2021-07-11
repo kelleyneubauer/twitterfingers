@@ -6,9 +6,9 @@ import useTypingGame from "react-typing-game-hook";
 const TweetDiv = (props) => {
   // Splits tweet into array of chars for parsing
   const {
-    states: { chars, charsState },
+    states: { chars, charsState, currIndex, correctChar, errorChar },
     actions: { insertTyping, resetTyping, deleteTyping },
-  } = useTypingGame(props.tweetContent);
+  } = useTypingGame(props.tweetContent, { skipCurrentWordOnSpace: false } );
 
   return (
     <>
@@ -31,11 +31,19 @@ const TweetDiv = (props) => {
               let state = charsState[index];
               let color =
                 state === 0 ? "#657786" : state === 1 ? "black" : "red";
-              return (
-                <span key={char + index} style={{ color }}>
-                  {char}
-                </span>
-              );
+              if (char === ' ' && state === 2) {
+                return (
+                  <span key={char + index} style={{ color , backgroundColor: color}}>
+                    {char}
+                  </span>
+                );
+              } else {
+                return (
+                  <span key={char + index} style={{ color }}>
+                    {char}
+                  </span>
+                );
+              }
             })}
           </p>
 
@@ -91,8 +99,7 @@ const TweetDiv = (props) => {
             Share
           </a>
         </div>
-        <br />
-        <br />
+
         <Form>
           <Form.Group>
             {/* Handles keystrokes for color logic */}
@@ -106,8 +113,10 @@ const TweetDiv = (props) => {
                   resetTyping();
                 } else if (key === "Backspace") {
                   deleteTyping(false);
+                  console.log("key: " + key + "\nidx: " + currIndex + "\ncorrect: " + correctChar + "\nerror: " + errorChar)
                 } else if (key.length === 1) {
                   insertTyping(key);
+                  console.log("key: " + key + "\nidx: " + currIndex + "\ncorrect: " + correctChar + "\nerror: " + errorChar)
                 }
               }}
             />

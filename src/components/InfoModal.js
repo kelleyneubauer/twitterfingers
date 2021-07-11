@@ -12,9 +12,9 @@ const InfoModal = () => {
       <div className="nav-icon" onClick={handleShow}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="40"
-          height="40"
-          fill="currentColor"
+          width="25"
+          height="25"
+          fill="white"
           className="bi bi-info-circle"
           viewBox="0 0 16 16"
         >

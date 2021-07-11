@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import TimerSettings from "./TimerSettings";
 
 const SettingsModal = () => {
   const [show, setShow] = useState(false);
@@ -58,12 +59,7 @@ const SettingsModal = () => {
             </Modal.Header>
             <br />
             <Form.Label>duration</Form.Label>
-            <Form.Control
-              type="text"
-              required
-              pattern="[0-9]{2}:[0-9]{2}"
-              defaultValue="1:00"
-            />
+            <TimerSettings />
           </Form>
 
           <br />

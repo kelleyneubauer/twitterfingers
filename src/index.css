@@ -14,15 +14,6 @@ code {
     monospace;
 }
 
-/* || Navbar Icon */
-
-.nav-icon {
-  margin-right: 0.5em;
-  margin-left: 0.5em;
-  color: #657786;
-  cursor: pointer;
-}
-
 /* || Timer */
 
 .timer {
@@ -43,6 +34,15 @@ code {
   margin: auto;
 }
 
+/* || Navigation */
+.nav-background {
+  background-color: #1da1f2;
+}
+
+.nav-brand {
+  font-size: 1.5em;
+}
+
 /* || Tweet Div */
 
 .game-divs {
@@ -50,6 +50,7 @@ code {
   width: 50%;
   text-align: left;
   padding: 1em;
+  margin-top: 1em;
 }
 
 .game-divs a {
@@ -73,6 +74,12 @@ code {
 
 .interaction-links {
   margin-right: 2em;
+}
+
+.nav-icon {
+  margin-right: 0.5em;
+  margin-left: 0.75em;
+  cursor: pointer;
 }
 
 .tweet {

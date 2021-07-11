@@ -28,18 +28,22 @@ const InfoModal = () => {
             <h4>ABOUT:</h4>
           </Modal.Header>
           <br />
-          <p>
+          <p><center>
             Twitter Fingers is a typing game created by Kelley Neubauer,
             Gabrielle Josephson, Kathleen O'Connor, and Ali Alameedi during the
             Summer 2021 Beaverhacks Hackathon at Oregon State University. It
             uses the Twitter API, React, and Bootstrap.
-          </p>
-          <br />
-          <Modal.Header>
+          </center></p>
+          <center><Modal.Header>
             <h4>HOW TO PLAY:</h4>
-          </Modal.Header>
+          </Modal.Header></center>
           <br />
-          <p>Just start typing the Tweet text...</p>
+          <p><center>
+            1) Press the 'start' button.<br />
+            2) Click on the interactive text box.<br />
+            3) Begin typing and having fun!<br />
+            Note: The game will keep track of your typing accuracy and words per minute! Good luck! <br />
+          </center></p>
         </Modal.Body>
       </Modal>
     </>

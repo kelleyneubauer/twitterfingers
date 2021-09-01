@@ -13,12 +13,7 @@ function App() {
   return (
     <>
       <Navigation />
-      <Container fluid>
-        <Row>
-          <Col>
-            <Timer />
-          </Col>
-        </Row>
+      <Container>
         <Row>
           <Col>
             <TweetDiv
@@ -30,6 +25,11 @@ function App() {
               likes={mockTweets[randomIdx].likes}
               comments={mockTweets[randomIdx].comments}
             />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Timer />
           </Col>
         </Row>
       </Container>

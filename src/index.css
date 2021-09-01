@@ -61,7 +61,7 @@ code {
 
 .game-divs {
   border: solid thin #e1e8ed;
-  width: 50%;
+  /* width: 50%; */
   text-align: left;
   padding: 1em;
   margin-top: 1em;
@@ -91,10 +91,13 @@ code {
 }
 
 .tweet {
-  font-size: 2em;
-  font-weight: bold;
   margin-right: 2em;
   margin-left: 2em;
+}
+
+.tweet-text {
+  font-size: 2em;
+  font-weight: bold;
   color: #657786;
 }
 
